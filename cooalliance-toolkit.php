@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Cooalliance Toolkit
+Plugin Name: Cooalliance Member Toolkit
 Description: Simple, flexible, make plugin for client.
 Author: Ibrahim Khalil 
 Version: 1.0.0
