@@ -31,7 +31,7 @@ cooalliance_text_field(
         <a href="%s" target="_blank">this link</a> to get Google Client ID
         %s', 'cooalliance-toolkit'), 'https://developers.google.com/identity/sign-in/web/sign-in',
         '<span style="color: #14ACDF">Paste following url in AUTHORIZED REDIRECT URI option mentioned at the link
-        '.esc_url(home_url()).' </span>')
+        '.esc_url(home_url()).' /wp-login.php</span>')
     )
 );
 // Google Google Client Secret
@@ -42,7 +42,7 @@ cooalliance_text_field(
         'name'  => 'cooalliance_gc_secret',
     )
     );
-    // Google Google Client Secret
+    // Google  Client Secret
 cooalliance_text_field(
     array(
         'label' => esc_html__('Google callback URL', 'cooalliance-toolkit' ),
@@ -61,7 +61,7 @@ cooalliance_text_field(
             <a href="%s" target="_blank">this link</a> to get LinkedIn  Client ID
             %s', 'cooalliance-toolkit'), 'https://www.linkedin.com/pulse/how-get-signin-linkedin-work-taric-andrade',
             '<span style="color: #14ACDF">Paste following url in AUTHORIZED REDIRECT URI option mentioned at the link
-            '.esc_url(home_url()).' </span>')
+            '.esc_url(home_url()).'/wp-login.php</span>')
         )
         );
  // LinkedIn Client Secret
@@ -72,3 +72,13 @@ cooalliance_text_field(
         'name'  => 'cooalliance_lc_secret',
     )
     );
+    /**
+     * Linkedin AUTH redirect url
+     */
+    cooalliance_text_field(
+        array(
+            'label' => esc_html__('Linkedin callback URL', 'cooalliance-toolkit' ),
+            'inline' => false,
+            'name'  => 'cooalliance_lnk_callback_url',
+        )
+        );

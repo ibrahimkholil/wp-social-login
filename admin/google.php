@@ -82,10 +82,10 @@ if ( isset( $pay_load ) ) {
 		$_SESSION['access_token'] = $g_client->getAccessToken();
 		$user_email               = $user->email;
 
-		$wt_sl_user_data['first_name'] = isset($user->givenName) ? $user->givenName : '';
-		$wt_sl_user_data['last_name'] = isset($user->familyName) ? $user->familyName : '';
-		$wt_sl_user_data['display_name'] = isset($user->name) ?$user->name : '';
-		$wt_sl_user_data['profile_pic'] = isset($user->picture) ? $user->picture : '';
+		$cooalliance_user_data['first_name'] = isset($user->givenName) ? $user->givenName : '';
+		$cooalliance_user_data['last_name'] = isset($user->familyName) ? $user->familyName : '';
+		$cooalliance_user_data['display_name'] = isset($user->name) ?$user->name : '';
+		$cooalliance_user_data['profile_pic'] = isset($user->picture) ? $user->picture : '';
 		$platform                 = 'google';
 		include 'login-data.php';
 		die;

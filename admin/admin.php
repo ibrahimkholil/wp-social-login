@@ -22,15 +22,15 @@ class Cooallinace_Toolkit_Admin
             $msg = __( 'Login with Social Media', 'cooalliance-tooltik' );
 			echo "<h4><b>$msg</b></h4> <div>";
 
-			$wt_social_login_enable_google   = get_option( 'wt_social_login_enable_google' );
-			$wt_social_login_enable_facebook = get_option( 'wt_social_login_enable_facebook' );
-			$wt_social_login_enable_linkedin = get_option( 'wt_social_login_enable_linkedin' );
-
+	
+			$options = get_option('cooalliance_options');
+			$cooalliance_google_app_id       = $options['cooalliance_gc_id'];
+			$cooalliance_linkedin_app_id  = $options['cooalliance_lc_id'];
 			
-			if ( $wt_social_login_enable_google ) {
+			if ( $cooalliance_google_app_id ) {
 				include 'google.php';
 			}
-			if ( $wt_social_login_enable_linkedin ) {
+			if ( $cooalliance_linkedin_app_id ) {
 				include 'linkedin.php';
 			}
 			echo '</div>';
