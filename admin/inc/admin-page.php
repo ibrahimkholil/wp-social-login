@@ -13,8 +13,8 @@ class Admin_Page
      public function add_admin_page()
     {
         add_menu_page(
-            esc_html__( 'Cooalliance Setting', ' cooalliance-toolkit' ),
-            esc_html__( 'Cooalliance Setting', ' cooalliance-toolkit' ),
+            esc_html__( 'Cooalliance Setting', ' cooalliance' ),
+            esc_html__( 'Cooalliance Setting', ' cooalliance' ),
             'manage_options',
             'cooalliance_setting',
             [$this, 'admin_cooalliance_view_callback'],
@@ -45,14 +45,14 @@ class Admin_Page
     }
     public function register_setting()
     {
-        register_setting('cooalliance-options-group','cooalliance_options','cooalliance-toolkit');
+        register_setting('cooalliance-options-group','cooalliance_options','cooalliance');
     }
     public function cooalliance_integration()
     {
         ?>
         
          <div class="cooalliance-integration-setting-wrapper wrap">
-            <h1> <?php _e('Social Login  Integration','cooalliance-toolkit')?></h1>
+            <h1> <?php _e('Social Login  Integration','cooalliance')?></h1>
             <form method="post" action="options.php">
                <?php 
                 settings_fields('cooalliance-options-group');

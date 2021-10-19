@@ -6,7 +6,7 @@
   display: inline-block;
   border-left: 2px solid #73cb01;
 }
-.admin-promo-notice h3{ 
+.admin-promo-notice h3{
   font-size: 14px;
 }
 
@@ -70,7 +70,7 @@
     /*border: 2px solid green;*/
 }
 .wsf-single-field .single-radio {
-	margin-bottom: 15px; 
+	margin-bottom: 15px;
 }
 .label-inline .single-radio {
 	display: inline-block;
@@ -116,7 +116,7 @@
   vertical-align: top;
 }
 .items-preview {
-  padding-right: 40px; 
+  padding-right: 40px;
 }
 .add-multi-field,
 .add-field {

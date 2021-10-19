@@ -2,9 +2,9 @@
 /*
 Plugin Name: Cooalliance Member Toolkit
 Description: Simple, flexible, make plugin for client.
-Author: Ibrahim Khalil 
+Author: Ibrahim Khalil
 Version: 1.0.0
- Text Domain: cooalliance-toolkit
+ Text Domain: cooalliance
 */
 
 
@@ -12,7 +12,7 @@ Version: 1.0.0
 defined( 'ABSPATH' ) or die( 'No Cheating!' );
 
 class Cooallinace_Toolkit
-{  
+{
     /**
     * plugin version
     */
@@ -27,7 +27,7 @@ class Cooallinace_Toolkit
    }
 
    /**
-    * Define plugin constants 
+    * Define plugin constants
     *
     * @return void
     */
@@ -39,9 +39,9 @@ class Cooallinace_Toolkit
         define( 'COOALLINACE_TOOLKIT_DIR_ADMIN', trailingslashit( COOALLINACE_TOOLKIT_PATH. 'admin' ) );
    }
 }
-if (class_exists('Cooallinace_Toolkit')) 
+if (class_exists('Cooallinace_Toolkit'))
 {
-   
+
     $Cooallinace = new Cooallinace_Toolkit();
 }
 

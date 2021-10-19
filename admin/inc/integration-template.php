@@ -13,7 +13,7 @@ defined('ABSPATH') or die("Cheating........Uh!!");
 // cooalliance_switcher_field(
 //     array(
 
-//         'label' => esc_html__( 'Popup Switcher', 'cooalliance-toolkit' ),
+//         'label' => esc_html__( 'Popup Switcher', 'cooalliance' ),
 //         'inline' => false,
 //         'name'  => 'popupswitcher',
 //     )
@@ -23,13 +23,13 @@ defined('ABSPATH') or die("Cheating........Uh!!");
 cooalliance_text_field(
     array(
 
-        'label' => esc_html__( 'Google Client ID', 'cooalliance-toolkit' ),
+        'label' => esc_html__( 'Google Client ID', 'cooalliance' ),
         'inline' => false,
         'name'  => 'cooalliance_gc_id',
         'description' =>sprintf(__('Required for Google Social Login to work. 
         Please follow the documentation at 
         <a href="%s" target="_blank">this link</a> to get Google Client ID
-        %s', 'cooalliance-toolkit'), 'https://developers.google.com/identity/sign-in/web/sign-in',
+        %s', 'cooalliance'), 'https://developers.google.com/identity/sign-in/web/sign-in',
         '<span style="color: #14ACDF">Paste following url in AUTHORIZED REDIRECT URI option mentioned at the link
         '.esc_url(home_url()).' /wp-login.php</span>')
     )
@@ -37,7 +37,7 @@ cooalliance_text_field(
 // Google Google Client Secret
 cooalliance_text_field(
     array(
-        'label' => esc_html__('Google Client Secret', 'cooalliance-toolkit' ),
+        'label' => esc_html__('Google Client Secret', 'cooalliance' ),
         'inline' => false,
         'name'  => 'cooalliance_gc_secret',
     )
@@ -45,7 +45,7 @@ cooalliance_text_field(
     // Google  Client Secret
 cooalliance_text_field(
     array(
-        'label' => esc_html__('Google callback URL', 'cooalliance-toolkit' ),
+        'label' => esc_html__('Google callback URL', 'cooalliance' ),
         'inline' => false,
         'name'  => 'cooalliance_gc_callback_url',
     )
@@ -53,13 +53,13 @@ cooalliance_text_field(
     // LinkedIn Client ID
     cooalliance_text_field(
         array(
-            'label' => esc_html__('LinkedIn Client ID', 'cooalliance-toolkit' ),
+            'label' => esc_html__('LinkedIn Client ID', 'cooalliance' ),
             'inline' => false,
             'name'  => 'cooalliance_lc_id',
             'description' =>sprintf(__('Required for LinkedIn  Social Login to work. 
             Please follow the documentation at 
             <a href="%s" target="_blank">this link</a> to get LinkedIn  Client ID
-            %s', 'cooalliance-toolkit'), 'https://www.linkedin.com/pulse/how-get-signin-linkedin-work-taric-andrade',
+            %s', 'cooalliance'), 'https://www.linkedin.com/pulse/how-get-signin-linkedin-work-taric-andrade',
             '<span style="color: #14ACDF">Paste following url in AUTHORIZED REDIRECT URI option mentioned at the link
             '.esc_url(home_url()).'/wp-login.php</span>')
         )
@@ -67,7 +67,7 @@ cooalliance_text_field(
  // LinkedIn Client Secret
  cooalliance_text_field(
     array(
-        'label' => esc_html__('LinkedIn Client Secret', 'cooalliance-toolkit' ),
+        'label' => esc_html__('LinkedIn Client Secret', 'cooalliance' ),
         'inline' => false,
         'name'  => 'cooalliance_lc_secret',
     )
@@ -77,7 +77,7 @@ cooalliance_text_field(
      */
     cooalliance_text_field(
         array(
-            'label' => esc_html__('Linkedin callback URL', 'cooalliance-toolkit' ),
+            'label' => esc_html__('Linkedin callback URL', 'cooalliance' ),
             'inline' => false,
             'name'  => 'cooalliance_lnk_callback_url',
         )
