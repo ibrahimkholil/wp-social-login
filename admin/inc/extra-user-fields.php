@@ -166,7 +166,7 @@ add_action( 'edit_user_profile_update', 'save_extra_user_profile_fields' );
 function save_extra_user_profile_fields( $user_id ) {
 
 if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
-update_usermeta( $user_id, 'image', $_POST['image'] );
+update_user_meta( $user_id, 'image', $_POST['image'] );
 update_user_meta( $user_id, 'title', $_POST['title'] );
 update_user_meta( $user_id, 'company_name', $_POST['company_name'] );
 update_user_meta( $user_id, 'industry', $_POST['industry'] );

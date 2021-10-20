@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Cooalliance Member Toolkit
-Description: Simple, flexible, make plugin for client.
+Description: Cooalliance member plugin .
 Author: Ibrahim Khalil
 Version: 1.0.0
  Text Domain: cooalliance
@@ -47,3 +47,6 @@ if (class_exists('Cooallinace_Toolkit'))
 
 // Admin file include
 require_once( COOALLINACE_TOOLKIT_DIR_ADMIN. 'admin.php' );
+// frontend file include
+require_once( COOALLINACE_TOOLKIT_PATH. 'frontend/frontend.php' );
+//require_once( COOALLINACE_TOOLKIT_PATH. 'inc/RegisterMembers/RegisterMembers.php' );

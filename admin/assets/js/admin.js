@@ -35,8 +35,10 @@ jQuery(function ($) {
 				});
 				file_frame.on('select', function() {
 					var attachment = file_frame.state().get('selection').first().toJSON();
-					$button.siblings('#image').val( attachment.sizes.thumbnail.url );
-					$button.siblings('.cooalliance_image_preview').attr( 'src', attachment.sizes.thumbnail.url );
+          console.log(attachment.url);
+				//	$button.siblings('#image').val( attachment.sizes.thumbnail.url );
+          $button.siblings('#image').val( attachment.url );
+					$button.siblings('.cooalliance_image_preview').attr( 'src', attachment.url );
 				});
 				file_frame.open();
 			});
