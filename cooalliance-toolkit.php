@@ -50,3 +50,4 @@ require_once( COOALLINACE_TOOLKIT_DIR_ADMIN. 'admin.php' );
 // frontend file include
 require_once( COOALLINACE_TOOLKIT_PATH. 'frontend/frontend.php' );
 //require_once( COOALLINACE_TOOLKIT_PATH. 'inc/RegisterMembers/RegisterMembers.php' );
+

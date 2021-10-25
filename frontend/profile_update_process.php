@@ -24,15 +24,15 @@ class Profile_Update_Process{
 			if( isset( $_POST[ 'formData' ] ) ) {
 
 				$data = array();
-				$metaUserValue = array();
+				$meta_user_value = array();
 
 				foreach ($_POST['formData'] as $key => $value) {
 					$data[] = $value['name'];
-					$metaUserValue[] = $value['value'];
+					$meta_user_value[] = $value['value'];
 				}
-				$registerData = array_combine($data, $metaUserValue);
+				$register_data = array_combine($data, $meta_user_value);
                 
-				if (!empty($registerData)) {
+				if (!empty($register_data)) {
                             // $contactmethods['title'] = 'Title';
                             // $contactmethods['company_name'] = 'Company Name';
                             // $contactmethods['industry'] = 'Industry';
@@ -46,14 +46,14 @@ class Profile_Update_Process{
                             // $contactmethods['about_me'] = 'About Me';
                             
 					$metas = array(
-                        'title'=>$registerData['title'],
-						'nickname' => $registerData['name'],
-						// 'nickName' => $registerData['nickName'],
+                        'title'=>$register_data['title'],
+						'nickname' => $register_data['name'],
+						// 'nickName' => $register_data['nickName'],
 						
-						'birthdate' => $registerData['dateOfBirth'],
-						'address' => $registerData['address'],
-						'cell_number' => $registerData['mobile'],
-						'email' => $registerData['email'],
+						'birthdate' => $register_data['dateOfBirth'],
+						'address' => $register_data['address'],
+						'cell_number' => $register_data['mobile'],
+						'email' => $register_data['email'],
 						'status' => 0
 					);
 

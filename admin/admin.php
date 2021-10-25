@@ -10,6 +10,7 @@ class Cooallinace_Toolkit_Admin
         $this->include_fiels();
         add_action( 'login_form', array( $this, 'social_links' ) );
         add_action('admin_enqueue_scripts', array($this,'admin_scripts'));
+        add_action('admin_init',array($this,'init'));
 
 
     }
@@ -30,7 +31,18 @@ public function admin_scripts($hook)
       require_once COOALLINACE_TOOLKIT_DIR_ADMIN. 'settings-fields/fields.php' ;
       require_once COOALLINACE_TOOLKIT_DIR_ADMIN. 'cpt/cpt.php' ;
       require_once COOALLINACE_TOOLKIT_DIR_ADMIN. 'inc/extra-user-fields.php' ;
+        // event list table
+      require_once(COOALLINACE_TOOLKIT_DIR_ADMIN. '/event-table/list-events.php');
+      //event details 
+      require_once(COOALLINACE_TOOLKIT_DIR_ADMIN. '/event-table/event-details.php');
+
     }
+
+    /**
+     * social login file
+     *
+     * @return void
+     */
     public function social_links()
     {
             $msg = __( 'Login with Social Media', 'cooalliance-tooltik' );
@@ -49,6 +61,94 @@ public function admin_scripts($hook)
 			}
 			echo '</div>';
     }
+    public function init()
+		{
+			$this->joined_member_page();
+		
+		}
+    /*
+         * joined_member_page Option page 
+         * add join member menu
+         * @return mixed 
+         */
+         
+		public function joined_member_page()
+		{
+			add_submenu_page(
+				'edit.php?post_type=events',
+				'Joined Members',
+				'Joined Members',
+				'manage_options',
+				'joined_members',
+				[$this,'joined_member_page_content']
+			);
+		}
+		
+		/*
+         * joined_member_page_content Option page 
+         * Joined Member page content
+         * @return mixed 
+         */
+         
+		public function joined_member_page_content()
+		{
+       echo "<h1>Hello members</h1>";
+			if (isset($_GET['event_id'])) {
+				$this->event_details_table($_GET['event_id']);
+				return;
+			}
+			$this->all_events_table();
+
+
+		}
+		
+		/*
+         * all Events Table list
+         * Event list and joined member count
+         * @return mixed 
+         */
+         
+		public function all_events_table()
+		{
+			$listEvents = new ListEvents();
+			$listEvents->prepare_items();
+     // var_dump($listEvents );
+			?>
+			<div class="wrap">
+				<div class="page-outer">
+					<h2>Joined Members in Event</h2>
+					<div class="event-list-content">
+						<?php $listEvents->display();?>
+					</div>
+				</div>
+			</div>
+			<?php
+		}
+		
+		/*
+         * event_details_table list
+         * join member details
+         * @return mixed 
+         */
+         
+		public function event_details_table($id)
+		{
+			$event = get_post($id);
+			$listEventDetails = new EventDetails($event);
+			$listEventDetails->prepare_items();
+			?>
+			<div class="wrap">
+				<div class="page-outer">
+					<h2>Joined Members in <?php echo $event->post_title;?></h2>
+					<div class="cf7-dbt-content">
+						<?php $listEventDetails->display();?>
+					</div>
+				</div>
+			</div>
+			<?php
+
+		}
+
 }
 
 new Cooallinace_Toolkit_Admin();
