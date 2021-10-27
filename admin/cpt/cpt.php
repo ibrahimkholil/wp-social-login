@@ -38,7 +38,7 @@
     'menu_icon' => 'dashicons-calendar-alt',
  		"map_meta_cap" => true,
  		"hierarchical" => false,
- 		"rewrite" => [ "slug" => "Events", "with_front" => true ],
+ 		"rewrite" => [ "slug" => "events", "with_front" => true ],
  		"query_var" => true,
  		"supports" => [ "title", "editor", "thumbnail", "excerpt" ],
  		"taxonomies" => [ "category", "post_tag" ],
