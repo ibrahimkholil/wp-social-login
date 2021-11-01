@@ -47,7 +47,7 @@ if(is_array($joinedUsers)){
                                                 <div class="siderbar-content bg-light">
                                                     <div class="info-block border-bottom p-3">
                                                         <h5>Last date of registration</h5>
-                                                        <?php $eventDeadLine = get_field('event_deadline');?>
+                                                        <?php $eventDeadLine = get_field('event_end_date_time');?>
                                                         <p class="m-0"><?php echo $eventDeadLine;?></p>
                                                     </div>
                                                     <div class="info-block p-3">
@@ -60,7 +60,7 @@ if(is_array($joinedUsers)){
                                                                     ?>
                                                                     <span class="badge badge-warning px-2 py-1">Required Payment</span>
                                                                 <?php else: ?>
-                                                                    <span class="badge badge-success px-2 py-1">Free</span>
+                                                                    <span class="badge bg-success px-2 py-1">Free</span>
                                                                 <?php endif; ?>
                                                             </div>
                                                         </div>
@@ -73,8 +73,10 @@ if(is_array($joinedUsers)){
                                                 </div>
                                                 <div class="btn-join">
                                                     <?php
+                                                  //  date format F j, Y g:i a
                                                     $datetime1 = new DateTime(current_time('F j, Y g:i a'));
                                                     $datetime2 = new DateTime($eventDeadLine);
+                      
                                                     $interval = $datetime1->diff($datetime2);
                                                     if($interval->invert):
                                                         ?>

@@ -96,13 +96,13 @@ class ListEvents extends \WP_List_Table
 			'post_type' => 'events',
 			'posts_per_page' => -1
 		]);
-		
+
 		foreach ($events as $event){
 			$users = get_post_meta($event->ID,'joinedUsers',true);
 			$data[] = array(
 				'id' => $event->ID,
 				'title' => '<a class="row-title" href="admin.php?page=joined_members&event_id='.$event->ID.'">'.$event->post_title.'</a>',
-				'eventDate' =>  get_post_meta($event->ID, 'event_deadline', true),
+				'eventDate' =>  get_post_meta($event->ID, 'event_end_date_time', true),
 				'registered' => is_array($users) ? count($users) : 0
 			);
 		}

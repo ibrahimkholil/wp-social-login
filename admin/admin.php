@@ -10,7 +10,7 @@ class Cooallinace_Toolkit_Admin
         $this->include_fiels();
         add_action( 'login_form', array( $this, 'social_links' ) );
         add_action('admin_enqueue_scripts', array($this,'admin_scripts'));
-        add_action('admin_init',array($this,'init'));
+        add_action('admin_menu',array($this,'init'));
 
 
     }
@@ -33,7 +33,7 @@ public function admin_scripts($hook)
       require_once COOALLINACE_TOOLKIT_DIR_ADMIN. 'inc/extra-user-fields.php' ;
         // event list table
       require_once(COOALLINACE_TOOLKIT_DIR_ADMIN. '/event-table/list-events.php');
-      //event details 
+      //event details
       require_once(COOALLINACE_TOOLKIT_DIR_ADMIN. '/event-table/event-details.php');
 
     }
@@ -64,14 +64,14 @@ public function admin_scripts($hook)
     public function init()
 		{
 			$this->joined_member_page();
-		
+
 		}
     /*
-         * joined_member_page Option page 
+         * joined_member_page Option page
          * add join member menu
-         * @return mixed 
+         * @return mixed
          */
-         
+
 		public function joined_member_page()
 		{
 			add_submenu_page(
@@ -83,13 +83,13 @@ public function admin_scripts($hook)
 				[$this,'joined_member_page_content']
 			);
 		}
-		
+
 		/*
-         * joined_member_page_content Option page 
+         * joined_member_page_content Option page
          * Joined Member page content
-         * @return mixed 
+         * @return mixed
          */
-         
+
 		public function joined_member_page_content()
 		{
        echo "<h1>Hello members</h1>";
@@ -101,13 +101,13 @@ public function admin_scripts($hook)
 
 
 		}
-		
+
 		/*
          * all Events Table list
          * Event list and joined member count
-         * @return mixed 
+         * @return mixed
          */
-         
+
 		public function all_events_table()
 		{
 			$listEvents = new ListEvents();
@@ -124,13 +124,13 @@ public function admin_scripts($hook)
 			</div>
 			<?php
 		}
-		
+
 		/*
          * event_details_table list
          * join member details
-         * @return mixed 
+         * @return mixed
          */
-         
+
 		public function event_details_table($id)
 		{
 			$event = get_post($id);

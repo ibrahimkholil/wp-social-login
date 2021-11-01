@@ -4,7 +4,7 @@ if (!class_exists('WP_List_Table')) {
 	require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
 
-class EventDetails extends \WP_List_Table
+class EventDetails extends WP_List_Table
 {
 	/**
 	 * table name for get data
@@ -43,9 +43,9 @@ class EventDetails extends \WP_List_Table
 	public function get_columns()
 	{
 		$columns['id'] = 'ID';
-		$columns['user_name'] = 'Member Name';
-		$columns['user_email'] = 'Member Email';
-		$columns['user_phone'] = 'Member Mobile Number';
+		$columns['user_name'] = ' Name';
+		$columns['user_email'] = ' Email';
+		$columns['user_phone'] = ' Mobile Number';
 		return $columns;
 	}
 
@@ -95,17 +95,17 @@ class EventDetails extends \WP_List_Table
 	{
 		$data = array();
 		$userIds = get_post_meta($this->event->ID,'joinedUsers',true);
-     
+
 		foreach ($userIds as $userId){
 			$user = get_user_by('id',$userId);
-			
-			if(!empty($user->ID)):  
+			if(!empty($user->ID)):
 			$data[] = array(
 				'id' => $user->ID,
-				'user_name' => get_user_meta($user->ID, 'name', true),
-				'user_email' => get_user_meta($user->ID, 'email', true), 
-				'user_phone' => get_user_meta($user->ID, 'mobile', true),
+				'user_name' => get_user_meta($user->ID, 'first_name', true),
+				'user_email' => $user->user_email,
+				'user_phone' => get_user_meta($user->ID, 'cell_number', true),
 			);
+	
 			endif;
 		}
 		return $data;

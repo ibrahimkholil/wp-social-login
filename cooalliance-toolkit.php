@@ -51,13 +51,3 @@ require_once( COOALLINACE_TOOLKIT_DIR_ADMIN. 'admin.php' );
 require_once( COOALLINACE_TOOLKIT_PATH. 'frontend/frontend.php' );
 //require_once( COOALLINACE_TOOLKIT_PATH. 'inc/RegisterMembers/RegisterMembers.php' );
 //
-//
- function singleTemplate($template, $post_type, $plugin_dir)
-	{
-		global $post;
-		if ($post->post_type == $post_type) {
-			$template = $plugin_dir . '/frontend/single-event.php';
-		}
-
-		return $template;
-	}
