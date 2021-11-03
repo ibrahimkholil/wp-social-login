@@ -53,7 +53,7 @@
 
  	$labels = [
  		"name" => __( "Resources", "cooalliance" ),
- 		"singular_name" => __( "Patient Resource", "cooalliance" ),
+ 		"singular_name" => __( " Resource", "cooalliance" ),
  	];
 
  	$args = [
@@ -75,7 +75,7 @@
  		"map_meta_cap" => true,
     'menu_icon'=>'dashicons-media-text',
  		"hierarchical" => false,
- 		"rewrite" => [ "slug" => "patient-resources", "with_front" => true ],
+ 		"rewrite" => [ "slug" => "resources", "with_front" => true ],
  		"query_var" => true,
  		"supports" => [ "title", "editor", "thumbnail", "excerpt" ],
  		"taxonomies" => [ "category", "post_tag" ],
