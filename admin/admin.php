@@ -35,6 +35,8 @@ public function admin_scripts($hook)
       require_once(COOALLINACE_TOOLKIT_DIR_ADMIN. '/event-table/list-events.php');
       //event details
       require_once(COOALLINACE_TOOLKIT_DIR_ADMIN. '/event-table/event-details.php');
+      //resources
+      require_once(COOALLINACE_TOOLKIT_DIR_ADMIN. '/inc/resources/resources-functions.php');
 
     }
 

@@ -40,7 +40,7 @@ $userInfo = get_userdata($currentId);
        <ul id="account_sidebar_nav" class="profile-usermenu nav flex-column ">
   				<li class="nav-item "><a class="text-white" href="#account_overview">Overview</a></li>
   				<li class="nav-item"><a class="text-white" href="#account_settings">Account Settings</a></li>
-  				<li class="nav-item" ><a class="text-white" href="#account_post_list">Post List</a></li>
+  				<li class="nav-item" ><a class="text-white" href="#account_resources_list">Resources</a></li>
   				<li class="nav-item">
   				<a class="py-3 d-block text-white" href="<?php echo wp_logout_url( home_url().'/login' ); ?>">
   					<i class="glyphicon glyphicon-user"></i>
@@ -54,7 +54,7 @@ $userInfo = get_userdata($currentId);
         <li id="account_overview">
           <div class="profile-info">
              <div class="profile-content px-5 py-3 rounded">
-              <table>
+              <table class="table table-striped table-bordered">
                 <tbody>
                 <tr>
                   <td>Full Name:</td>
@@ -129,10 +129,19 @@ $userInfo = get_userdata($currentId);
           </ul>
         </li>
 
-        <li id="account_post_list" style="display:none">
+        <li id="account_resources_list" style="display:none">
 
-        <h1>Post lists</h1>
-
+          <h3>Add New Resources</h3>
+          <?php acf_form_head();?>
+          <?php acf_form(array(
+         'post_id'       => 'new_post',
+         'post_title'	=> true,
+         'new_post'      => array(
+             'post_type'     => 'resources',
+             'post_status'   => 'publish'
+         ),
+         'submit_value'  => 'Create new Resources'
+     )); ?>
         </li>
       </ul>
 

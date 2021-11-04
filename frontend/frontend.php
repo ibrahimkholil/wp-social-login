@@ -35,55 +35,69 @@ function cooalliance_frontend_styles(){
  * [added single even template by hook]
  * @var [event]
  */
-  add_filter( 'single_template', 'events_single_template', 99, 1 );
-   function events_single_template($single_template) {
+add_filter( 'single_template', 'events_single_template', 99, 1 );
+
+function events_single_template($single_template) {
      global $post;
      if ($post->post_type == 'events' ) {
-     $single_template = trailingslashit( plugin_dir_path( __FILE__ ) ).'single-event.php';
+     $single_template = trailingslashit( plugin_dir_path( __FILE__ ) ).'/templates/single-event.php';
     }
      return $single_template;
   }
 
   /**
-  	 * Added UserId into metaBox
-  	 */
-  	 function user_join_meta_box(){
+   * [archive_template description]
+   *
+   */
+add_filter( 'archive_template','custom_archive_template',99,1 );
+function custom_archive_template($archive_template){
+  global $post;
 
-  		if(!check_ajax_referer( 'event-join-meta-nonce', 'security', false)){
-  			echo 'Nonce not varified';
-  			wp_die();
-  		}else{
-  		$userId = get_current_user_id();
+       if ( is_post_type_archive ( 'resources' ) ) {
+            $archive_template = dirname( __FILE__ ) . '/templates/resources-archive.php';
+       }
+       return $archive_template;
+}
+/**
+ * Added UserId into metaBox
+ */
+ function user_join_meta_box(){
 
-  		if(!empty($_POST['eventPostId']) ){
-  			$joinedUsers = get_post_meta($_POST['eventPostId'],'joinedUsers',true);
+	if(!check_ajax_referer( 'event-join-meta-nonce', 'security', false)){
+		echo 'Nonce not varified';
+		wp_die();
+	}else{
+	$userId = get_current_user_id();
 
-  			if(is_array($joinedUsers)){
+	if(!empty($_POST['eventPostId']) ){
+		$joinedUsers = get_post_meta($_POST['eventPostId'],'joinedUsers',true);
 
-  				if(in_array($userId,$joinedUsers)){
-  					echo json_encode(array('Status' => true, 'message' => 'You have already joined in the event'));
-  					wp_die();
-  				}else{
-  					array_push($joinedUsers,$userId);
-  					update_post_meta( $_POST['eventPostId'],  'joinedUsers', $joinedUsers);
-  					echo json_encode(array('Status' => true, 'message' => 'Thank you for Join This Event.'));
-  					wp_die();
-  				}
-  			}else{
-  				$joinedUsers = array($userId);
-  				update_post_meta( $_POST['eventPostId'],  'joinedUsers', $joinedUsers);
-  				echo json_encode(array('Status' => true, 'message' => 'Thank you for Join This Event.'));
-  				wp_die();
-  			}
+		if(is_array($joinedUsers)){
+
+			if(in_array($userId,$joinedUsers)){
+				echo json_encode(array('Status' => true, 'message' => 'You have already joined in the event'));
+				wp_die();
+			}else{
+				array_push($joinedUsers,$userId);
+				update_post_meta( $_POST['eventPostId'],  'joinedUsers', $joinedUsers);
+				echo json_encode(array('Status' => true, 'message' => 'Thank you for Join This Event.'));
+				wp_die();
+			}
+		}else{
+			$joinedUsers = array($userId);
+			update_post_meta( $_POST['eventPostId'],  'joinedUsers', $joinedUsers);
+			echo json_encode(array('Status' => true, 'message' => 'Thank you for Join This Event.'));
+			wp_die();
+		}
 
 
 
-  		}else{
-  			echo json_encode(array('Status' => true, 'message' => 'Event Join Fail!'));
-  			wp_die();
-  			}
-  		}
-  	}
+	}else{
+		echo json_encode(array('Status' => true, 'message' => 'Event Join Fail!'));
+		wp_die();
+		}
+	}
+}
 
 add_action( 'wp_ajax_user_join_meta_box', 'user_join_meta_box');
 add_action( 'wp_ajax_nopriv_user_join_meta_box', 'user_join_meta_box' );

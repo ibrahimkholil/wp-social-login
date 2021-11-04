@@ -77,7 +77,7 @@
  		"hierarchical" => false,
  		"rewrite" => [ "slug" => "resources", "with_front" => true ],
  		"query_var" => true,
- 		"supports" => [ "title", "editor", "thumbnail", "excerpt" ],
+ 		"supports" => [ "title","custom-fields" ],
  		"taxonomies" => [ "category", "post_tag" ],
  		"show_in_graphql" => false,
  	];
