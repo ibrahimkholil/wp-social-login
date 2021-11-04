@@ -1,9 +1,9 @@
 div#cooalliance_account {
- max-width: 1170px;
+    max-width: 1170px;
     width: 100%;
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: row; */
 }
 .member-profile{
     background: #F1F3FA;
@@ -128,3 +128,20 @@ div#cooalliance_account {
     background: #fff;
     min-height: 460px;
   }
+#cooalliance_account input[type=text],
+#cooalliance_account input[type=email],
+#cooalliance_account input[type=url],
+#cooalliance_account input[type=password],
+#cooalliance_account input[type=search],
+#cooalliance_account input[type=number],
+#cooalliance_account input[type=tel],
+#cooalliance_account input[type=date],
+#cooalliance_account input[type=month],
+#cooalliance_account input[type=week],
+#cooalliance_account input[type=time],
+#cooalliance_account input[type=datetime],
+#cooalliance_account input[type=datetime-local],
+#cooalliance_account input[type=color],
+#cooalliance_account .site textarea{
+  border: 1px solid #ced4da;
+}
