@@ -7,7 +7,7 @@
  */
 ?>
     <div class="cooalliance_user_profile_edit">
-        <div class="entry-content entry">
+        <div class="edit-profile-inner">
         <?php
             $current_id = get_current_user_id();
             $user_info = get_userdata($current_id);
@@ -39,10 +39,10 @@
 															<input type="date" name="dateOfBirth" class="form-control input-lg dateOfBirth"  value="<?php echo $user_info->birthdate?>" />
 														</div>
 													</div>
-													
-										
+
+
 												</div>
-												
+
 												<div class="row mb-3">
 													<div class="col-12">
 														<div class="er-field-wrap">
@@ -77,4 +77,3 @@
             <?php endif;?>
         </div><!-- .entry-content -->
     </div><!-- .hentry .post -->
-    

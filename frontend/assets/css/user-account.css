@@ -145,3 +145,47 @@ div#cooalliance_account {
 #cooalliance_account .site textarea{
   border: 1px solid #ced4da;
 }
+
+.profile-content table td,
+.user_resourse_table table td,
+.resources_archive_list_table table td{
+    border-color: #dee2e6;
+}
+.user_resourse_table .table>:not(:first-child),
+.resources_archive_list_table .table>:not(:first-child) {
+    /* border-top: 1px solid #dee2e6; */
+    border-color: #dee2e6;
+}
+.user_resourse_table .table-bordered>:not(caption)>*>*,
+.resources_archive_list_table .table-bordered>:not(caption)>*>* {
+    border-width: 1px;
+    border-color: #dee2e6;
+}
+.user_resourse_table {
+    background: #fff;
+    padding: 15px;
+}
+div#message.updated {
+    background: #28a745;
+    color: #fff;
+    padding: 0 10px;
+    margin: 0!important;
+}
+
+.acf-form{
+  margin-top: 20px!important;
+}
+.acf-field input[type=text], .acf-field input[type=password], .acf-field input[type=date], .acf-field input[type=datetime], .acf-field input[type=datetime-local], .acf-field input[type=email], .acf-field input[type=month], .acf-field input[type=number], .acf-field input[type=search], .acf-field input[type=tel], .acf-field input[type=time], .acf-field input[type=url], .acf-field input[type=week], .acf-field textarea, .acf-field select{
+  border: 1px solid #ced4da;
+}
+.acf-form-submit{
+  padding: 0px 15px;
+}
+.acf-form-submit .acf-button{
+  background-color: #28a745!important;
+  color: #fff!important;
+}
+body.post-type-archive-resources{
+  background: #fff;
+}
+.resources_archive_list_table{}

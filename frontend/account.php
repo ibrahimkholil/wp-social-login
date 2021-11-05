@@ -21,7 +21,7 @@ $userInfo = get_userdata($currentId);
 
 <div class="container" id="cooalliance_account">
   <div class="row">
-     <div class="col-12 col-md-3 bg-primary rounded">
+     <div class="col-12 col-md-3 bg-primary alert alert-primary rounded">
        <div class="profile-sidebar pb-0">
          <div class="profile-userpic text-center mx-auto">
            <img src="<?php echo $userInfo->image; ?>" class="img-fluid" alt="">
@@ -30,7 +30,7 @@ $userInfo = get_userdata($currentId);
            <div class="profile-usertitle-name">
              <?php echo $userInfo->name .' '. $userInfo->display_name; ?>
            </div>
-           <div class="profile-usertitle-job">
+           <div class="profile-usertitle-job text-warning">
              <?php echo $userInfo->company_name; ?>
            </div>
          </div>
@@ -131,17 +131,51 @@ $userInfo = get_userdata($currentId);
 
         <li id="account_resources_list" style="display:none">
 
-          <h3>Add New Resources</h3>
-          <?php acf_form_head();?>
-          <?php acf_form(array(
-         'post_id'       => 'new_post',
-         'post_title'	=> true,
-         'new_post'      => array(
-             'post_type'     => 'resources',
-             'post_status'   => 'publish'
-         ),
-         'submit_value'  => 'Create new Resources'
-     )); ?>
+          <h3><a class="btn btn-primary" href="/add-new-resources/">Add New Resources</a></h3>
+           <div class="user_resourse_table mt-3">
+            <h3 class="py-3">Your Resources Lists</h3>
+              <table class="table  table-bordered ">
+                  <thead>
+                    <tr>
+                      <th scope="col">Title</th>
+                      <th scope="col">Resources type</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+
+                    global $current_user;
+                    wp_get_current_user();
+
+                    $author_query = array('post_type' => 'resources','posts_per_page' => '-1','author' => $current_user->ID);
+                    $author_posts = new WP_Query($author_query);
+                    while($author_posts->have_posts()) : $author_posts->the_post();
+                    $resource_type = get_post_meta(get_the_id(), 'resources_type', true);
+                    $text_group_fileds = get_field('text_group_fileds');
+                    ?>
+                      <tr>
+                        <td>
+                          <a class="text-primary" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+                        </td>
+                          <td><?php echo esc_attr(   $resource_type );?></td>
+                          <td><?php echo get_the_date( 'Y-m-d' ); ?></td>
+                          <td>
+                            <?php
+                              global $post;
+                              $postID = $post->ID; ?>
+                              <a target="_blank" href="./edit-resources?post=<?php echo $postID; ?>">Edit</a>
+                           </td>
+                      </tr>
+                    <?php
+                    endwhile;
+
+                    ?>
+
+                  </tbody>
+                </table>
+           </div>
         </li>
       </ul>
 

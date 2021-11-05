@@ -9,6 +9,21 @@ get_header( );
 <div class="container">
   <div class="row">
     <div class="col col-lg-12">
+      <h3>Resources Lists</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-lg-12 resources_archive_list_table">
+      <table class="table  table-bordered ">
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Resources type</th>
+              <th scope="col">Date</th>
+              <th scope="col">Author</th>
+            </tr>
+          </thead>
+          <tbody>
       <?php
         if ( have_posts() ) :
             ?>
@@ -17,31 +32,17 @@ get_header( );
             while ( have_posts() ) :
                 the_post();
                   $resource_type = get_post_meta(get_the_id(), 'resources_type', true);
-                  $text_group_fileds = get_field('text_group_fileds');
-                //  var_dump($resource_type);
-                  switch ($resource_type) {
-                    case 'Text':
-                    
-                      include plugin_dir_path( __FILE__ ) . 'template-parts/text.php';
-
-                      break;
-                    case 'Video':
-                      include plugin_dir_path( __FILE__ ) . 'template-parts/video.php';
-                      break;
-                    case 'URL':
-                      include plugin_dir_path( __FILE__ ) . 'template-parts/url.php';
-                      break;
-                    case 'Upload file':
-                      include plugin_dir_path( __FILE__ ) . 'template-parts/upload-file.php';
-                      break;
-                    default:
-                        include plugin_dir_path( __FILE__ ) . 'template-parts/text.php';
-                      break;
-                  }
-
+                ?>
+                <tr>
+                  <td>
+                    <a class="text-primary" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+                  </td>
+                    <td><?php echo esc_attr(   $resource_type );?></td>
+                    <td><?php echo get_the_date( 'Y-m-d' ); ?></td>
+                    <td><?php  echo get_the_author(); ?></td>
+                </tr>
+                <?php
             endwhile;
-
-
 
         else :
 
@@ -49,6 +50,8 @@ get_header( );
 
         endif;
         ?>
+      </tbody>
+    </table>
     </div>
   </div>
 </div>
