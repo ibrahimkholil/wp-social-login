@@ -140,9 +140,9 @@ add_action( 'wp_ajax_nopriv_user_join_meta_box', 'user_join_meta_box' );
 add_filter( 'page_template', 'wpa3396_page_template' );
 function wpa3396_page_template( $page_template ){
 
-    // if ( get_page_template_slug() == 'add-new-resources.php' ) {
-    //     $page_template = dirname( __FILE__ ) . '/templates/add-new-resources.php';
-    // }
+    if ( get_page_template_slug() == 'add-new-resources.php' ) {
+        $page_template = dirname( __FILE__ ) . '/templates/add-new-resources.php';
+    }
     if ( get_page_template_slug() == 'update_edit_resources.php' ) {
         $page_template = dirname( __FILE__ ) . '/templates/update_edit_resources.php';
     }
@@ -156,7 +156,7 @@ add_filter( 'theme_page_templates', 'wpse_288589_add_template_to_select', 10, 4 
 function wpse_288589_add_template_to_select( $post_templates, $wp_theme, $post, $post_type ) {
 
     // Add custom template named template-custom.php to select dropdown
-  //  $post_templates['add-new-resources.php'] = __('Add New Resources');
+    $post_templates['add-new-resources.php'] = __('Add New Resources');
     $post_templates['update_edit_resources.php'] = __('Edit Resources');
 
     return $post_templates;
