@@ -9,7 +9,7 @@
 
 defined('ABSPATH') or die("Cheating........Uh!!"); 
 
-
+global $wpdb;
 if ( is_user_logged_in() ) {
 	$current_user = wp_get_current_user();
 	if ( $current_user->user_email != $user_email ) {
@@ -34,6 +34,7 @@ if ( is_email( $user_email ) ) {
 		$counter ++;
 	}
 	$password = substr( str_shuffle( str_repeat( $x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil( 11 / strlen( $x ) ) ) ), 1, 11 );
+	//var_dump($wpdb );
 	if ( ! $wpdb->get_var( $query_check_already_exists ) ) {
 		$new_user_data['user_login'] = $username;
 		$new_user_data['user_pass'] = $password;

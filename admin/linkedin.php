@@ -27,9 +27,11 @@ $scopes     = 'r_liteprofile%20r_emailaddress';
 
 if ( ! function_exists( 'getCallback' ) ) {
 	function getCallback() {
-		$cooalliance_login_linkedin_app_id       = get_option( 'cooalliance_login_linkedin_app_id' );
-		$cooalliance_login_linkedin_app_secret   = get_option( 'cooalliance_login_linkedin_app_secret' );
-		$cooalliance_login_linkedin_callback_url = get_option( 'cooalliance_login_linkedin_callback_url' );
+		$options = get_option('cooalliance_options');
+
+		$cooalliance_login_linkedin_app_id       = $options[ 'cooalliance_lc_id'];
+		$cooalliance_login_linkedin_app_secret   = $options[ 'cooalliance_lc_secret'];
+		$cooalliance_login_linkedin_callback_url = $options[ 'cooalliance_lnk_callback_url'];
 
 		$client_id     = $cooalliance_login_linkedin_app_id;
 		$client_secret = $cooalliance_login_linkedin_app_secret;
@@ -48,6 +50,7 @@ if ( ! function_exists( 'getCallback' ) ) {
 				'code'          => $code,
 				'grant_type'    => 'authorization_code',
 			);
+			//var_dump($params);
 			$request         = new WP_Http();
 				$accessToken = $request->request(
 					$url,
@@ -57,7 +60,9 @@ if ( ! function_exists( 'getCallback' ) ) {
 					)
 				);
 			$accessToken     = isset($accessToken['body']) ? json_decode( $accessToken['body'] ) : '';
+			var_dump($accessToken);
 			$accessToken = isset($accessToken->access_token) ? $accessToken->access_token : '';
+			
 			if($accessToken) {
 				$user_email_url = 'https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))&oauth2_access_token=' . $accessToken;
 				$user_email_data = @file_get_contents( $user_email_url, false );
