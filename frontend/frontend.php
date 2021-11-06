@@ -6,7 +6,7 @@
  */
  require_once( COOALLINACE_TOOLKIT_PATH . 'frontend/account.php' );
  require_once( COOALLINACE_TOOLKIT_PATH . 'frontend/profile_update_process.php' );
- //require_once( COOALLINACE_TOOLKIT_PATH . 'frontend/page-templater.php' );
+
 
 add_action('wp_enqueue_scripts', 'cooalliance_frontend_styles' );
 

@@ -41,6 +41,7 @@ $userInfo = get_userdata($currentId);
   				<li class="nav-item "><a class="text-white" href="#account_overview">Overview</a></li>
   				<li class="nav-item"><a class="text-white" href="#account_settings">Account Settings</a></li>
   				<li class="nav-item" ><a class="text-white" href="#account_resources_list">Resources</a></li>
+  				<li class="nav-item" ><a class="text-white" href="#joined_events">Joined Events</a></li>
   				<li class="nav-item">
   				<a class="py-3 d-block text-white" href="<?php echo wp_logout_url( home_url().'/login' ); ?>">
   					<i class="glyphicon glyphicon-user"></i>
@@ -176,6 +177,55 @@ $userInfo = get_userdata($currentId);
                   </tbody>
                 </table>
            </div>
+        </li>
+        <li id="joined_events"  style="display:none">
+          <h3 class="py-3">Your Joined Events</h3>
+          <?php
+
+            $events = get_posts([
+               'post_type' => 'events',
+               'posts_per_page' => -1
+             ]);
+            $events = get_posts( array( 'post_type' => 'events', 'posts_per_page' => -1 ) );
+
+             ?>
+             <div class="joined_events_table">
+             <table class="table  table-bordered ">
+                 <thead>
+                   <tr>
+                     <th scope="col">Title</th>
+                     <th scope="col">Date</th>
+
+                   </tr>
+                 </thead>
+                 <tbody>
+             <?php
+             foreach ($events as $event){
+        			$joined_user = get_post_meta($event->ID,'joinedUsers',true);
+        			$eventDeadLine = get_post_meta($event->ID,'event_end_date_time',true);
+              $current_user_id = get_current_user_id();
+            ?>
+
+            <?php
+
+              if (in_array(  $current_user_id, $joined_user)) {
+                ?>
+                  <tr>
+                      <td>
+                        <a class="text-primary" href="<?php echo get_permalink($event->ID); ?>"><?php  echo $event->post_title;?></a>
+                      </td>
+
+                      <td>
+                      <?php  echo $eventDeadLine;?>
+                      </td>
+                  </tr>
+
+                <?php } ?>
+
+          <?php	} ?>
+        </tbody>
+       </table>
+     </div>
         </li>
       </ul>
 

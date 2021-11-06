@@ -148,20 +148,24 @@ div#cooalliance_account {
 
 .profile-content table td,
 .user_resourse_table table td,
-.resources_archive_list_table table td{
+.resources_archive_list_table table td,
+.joined_events_table table td{
     border-color: #dee2e6;
 }
 .user_resourse_table .table>:not(:first-child),
-.resources_archive_list_table .table>:not(:first-child) {
+.resources_archive_list_table .table>:not(:first-child),
+.joined_events_table .table>:not(:first-child) {
     /* border-top: 1px solid #dee2e6; */
     border-color: #dee2e6;
 }
 .user_resourse_table .table-bordered>:not(caption)>*>*,
-.resources_archive_list_table .table-bordered>:not(caption)>*>* {
+.resources_archive_list_table .table-bordered>:not(caption)>*>*,
+.joined_events_table .table-bordered>:not(caption)>*>* {
     border-width: 1px;
     border-color: #dee2e6;
 }
-.user_resourse_table {
+.user_resourse_table,
+.joined_events_table  {
     background: #fff;
     padding: 15px;
 }
