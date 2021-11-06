@@ -165,7 +165,7 @@ $userInfo = get_userdata($currentId);
                             <?php
                               global $post;
                               $postID = $post->ID; ?>
-                              <a target="_blank" href="./edit-resources?post=<?php echo $postID; ?>">Edit</a>
+                              <a target="_blank" href="./resource-update?post=<?php echo $postID; ?>">Edit</a>
                            </td>
                       </tr>
                     <?php

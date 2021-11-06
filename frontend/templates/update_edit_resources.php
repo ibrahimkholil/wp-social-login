@@ -21,27 +21,15 @@
           // Show the form
         //  acf_form();
       }
-  //     acf_form(array(
-  //     'post_id'	   => $post_id, //Variable that you'll get from the URL
-  //     'post_title'   => true,
-  //     'post_content' => true,
-  //     'fields' => array('_thumbnail_id', 'ask_for_donations'),  //The name of the custom fields I want to show on the form
-  //     'submit_value' => 'Update Resources',
-  //     'return' => '%post_url%' //Returns to the original post
-  // ));
-  ?>
-  <?php
-
-  // while ( have_posts() ) : the_post();
-  //    acf_form(array(
-  //       'post_id'       =>  $post_id,
-  //       'post_title'    => true,
-  //       'post_content'  => false,
-  //       'submit_value'  => __('Update meta')
-  //   ));
-  //   endwhile;
-
-    ?>
+       while ( have_posts() ) : the_post();
+         acf_form(array(
+            'post_id'       => $post_id = $_GET["post"],
+            'post_title'    => true,
+            'post_content'  => false,
+            'submit_value'  => __('Update Resources')
+        ));
+        endwhile;
+        ?>
     </div>
 
   </div>
