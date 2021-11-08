@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @package     Cooalliance 
+ * @package     Cooalliance
  * @author      Ibrahim
  *
  *
@@ -62,7 +62,7 @@ if ( ! function_exists( 'getCallback' ) ) {
 			$accessToken     = isset($accessToken['body']) ? json_decode( $accessToken['body'] ) : '';
 			var_dump($accessToken);
 			$accessToken = isset($accessToken->access_token) ? $accessToken->access_token : '';
-			
+
 			if($accessToken) {
 				$user_email_url = 'https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))&oauth2_access_token=' . $accessToken;
 				$user_email_data = @file_get_contents( $user_email_url, false );
@@ -75,7 +75,7 @@ if ( ! function_exists( 'getCallback' ) ) {
 						$cooalliance_user_data['first_name'] = isset($linkedin_profile_data->localizedFirstName) ? $linkedin_profile_data->localizedFirstName : '';
 						$cooalliance_user_data['last_name'] = isset($linkedin_profile_data->localizedLastName) ? $linkedin_profile_data->localizedLastName : '';
 						$cooalliance_user_data['display_name'] = $cooalliance_user_data['first_name'].' '.$cooalliance_user_data['last_name'];
-						$cooalliance_user_data['profile_pic'] = !empty($linkedin_profile_data->profilePicture->{'displayImage~'}->elements[0]->identifiers[0]->identifier) ? $linkedin_profile_data->profilePicture->{'displayImage~'}->elements[0]->identifiers[0]->identifier : '';
+						$cooalliance_user_data['image'] = !empty($linkedin_profile_data->profilePicture->{'displayImage~'}->elements[0]->identifiers[0]->identifier) ? $linkedin_profile_data->profilePicture->{'displayImage~'}->elements[0]->identifiers[0]->identifier : '';
 					}
 
 					$user_email = !empty($user_email->elements[0]->{'handle~'}->emailAddress) ? $user_email->elements[0]->{'handle~'}->emailAddress:'';
