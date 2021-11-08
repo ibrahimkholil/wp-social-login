@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @package     Cooalliance 
+ * @package     Cooalliance
  * @author      Ibrahim
  * login data
  *
@@ -40,18 +40,22 @@ if ( is_email( $user_email ) ) {
 		$new_user_data['user_pass'] = $password;
 		$new_user_data['user_email'] = $user_email;
 		$new_user_data['role'] = 'subscriber';
-		if(isset($wt_sl_user_data['first_name']))
-			$new_user_data['first_name'] = $wt_sl_user_data['first_name'];
-		if(isset($wt_sl_user_data['last_name']))
-			$new_user_data['last_name'] = $wt_sl_user_data['last_name'];
-		if(isset($wt_sl_user_data['display_name']))
-			$new_user_data['display_name'] = $wt_sl_user_data['display_name'];
+		if(isset($cooalliance_user_data['first_name']))
+			$new_user_data['first_name'] = $cooalliance_user_data['first_name'];
+		if(isset($cooalliance_user_data['last_name']))
+			$new_user_data['last_name'] = $cooalliance_user_data['last_name'];
+		if(isset($cooalliance_user_data['display_name']))
+			$new_user_data['display_name'] = $cooalliance_user_data['display_name'];
+			if(isset($cooalliance_user_data['image']))
+			$new_user_data['image'] = $cooalliance_user_data['image'];
+		//	var_dump(	$new_user_data);
 		$found_customer = wp_insert_user( $new_user_data );
 
-		if ( ! is_wp_error( $found_customer ) ) {
-			if(!empty($wt_sl_user_data['profile_pic']))
-				add_user_meta($found_customer, 'wt_sl_profile_pic', $wt_sl_user_data['profile_pic']);
-		}
+		// if ( ! is_wp_error( $found_customer ) ) {
+		// 	if(!empty($cooalliance_user_data['image']))
+		// 	update_user_meta($userId, 'image', 	$new_user_data['image']);
+		// 		//add_user_meta($found_customer, 'wt_sl_profile_pic', $cooalliance_user_data['image']);
+		// }
 
 	} else {
 		$user_data      = $wpdb->get_row( "SELECT *  from  $table_name where `user_email` = '$user_email'", ARRAY_A );
@@ -73,6 +77,7 @@ if ( ! is_wp_error( $user ) ) {
 	update_user_meta( $found_customer, $platform . '_last_login', date( 'Y-m-d H:i:s' ) );
 	update_user_meta( $found_customer, $platform . '_email', $user_email );
 	update_user_meta( $found_customer, $platform . '_link_status', 1 );
+	update_user_meta($user->ID, 'image', 	$new_user_data['image']);
 
 	$redirect_to = user_admin_url();
 	wp_safe_redirect( $redirect_to );

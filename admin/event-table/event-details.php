@@ -98,14 +98,15 @@ class EventDetails extends WP_List_Table
 
 		foreach ($userIds as $userId){
 			$user = get_user_by('id',$userId);
+			var_dump($user);
 			if(!empty($user->ID)):
 			$data[] = array(
 				'id' => $user->ID,
-				'user_name' => get_user_meta($user->ID, 'first_name', true),
+				'user_name' => $user->display_name,
 				'user_email' => $user->user_email,
 				'user_phone' => get_user_meta($user->ID, 'cell_number', true),
 			);
-	
+
 			endif;
 		}
 		return $data;

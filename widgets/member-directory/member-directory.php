@@ -4,7 +4,10 @@ namespace Elementor;
 if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
-
+/**
+ * [Cooalliance_Member_Directory_Elementor_Widget]
+ * member directory search filter widget
+ */
 class Cooalliance_Member_Directory_Elementor_Widget extends Widget_Base
 {
 	/**
@@ -25,7 +28,7 @@ class Cooalliance_Member_Directory_Elementor_Widget extends Widget_Base
 	}
   /**
    * [get_script_depends description]
-   * @return [type] [description]
+   * @return [type] load js
    */
   public function get_script_depends()
   {
@@ -122,67 +125,7 @@ class Cooalliance_Member_Directory_Elementor_Widget extends Widget_Base
           		<?php endif; ?>
           	</div>
           </section>
-          <?php
-
-
-          $memberInfo = array(
-            'role'    => 'subscriber',
-            'order'   => 'ASC'
-          );
-
-
-          ?>
-          <table id="listUsers">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Company</th>
-                        <th>Address</th>
-                        <th>Country</th>
-                        <th>Joined Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $usersInfo = get_users( $memberInfo );
-                    if(!empty($usersInfo)):
-                    foreach ($usersInfo as $memberInfo):
-                      $fullName = get_user_meta( $memberInfo->ID, 'nickname', true);
-                      $company_name = get_user_meta( $memberInfo->ID, 'company_name', true);
-                      $userPhoto = get_user_meta( $memberInfo->ID, 'image', true);
-                      ?>
-                        <tr>
-                            <td><?php echo $memberInfo->display_name; ?></td>
-                            <td>
-                              <?php if(!empty($userPhoto)): ?>
-                    			    <img src="<?php echo $userPhoto; ?>" class="img-fluid rounded-circle" alt="user Photo" width="96" height="96" style="height: 96px;object-fit: cover;">
-                    			    <?php else: ?>
-                    			    <?php echo get_avatar( $memberInfo->ID, 'medium', '', 'member-profile', array('class' => array('img-fluid', 'rounded-circle') )); ?>
-                    			    <?php endif; ?>
-                            </td>
-                            <td><?php ?></td>
-                            <td><?php  ?></td>
-                            <td><?php  ?></td>
-                            <td><?php  ?></td>
-                        </tr>
-                      <?php endforeach; else:?>
-                  			<h4>Member Not Register Yet!</h4>
-                  		<?php endif; ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Image</th>
-                      <th>Title</th>
-                      <th>Company</th>
-                      <th>Address</th>
-                      <th>Country</th>
-                      <th>Joined Date</th>
-                    </tr>
-                </tfoot>
-            </table>
+        
 			</div>
 
 

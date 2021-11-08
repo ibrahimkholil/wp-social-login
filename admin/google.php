@@ -1,13 +1,13 @@
 <?php
 /**
  *
- * @package     Cooalliance 
+ * @package     Cooalliance
  * @author      Ibrahim
  *
  *
  */
 
-defined('ABSPATH') or die("Cheating........Uh!!"); 
+defined('ABSPATH') or die("Cheating........Uh!!");
 
 global $wpdb;
 
@@ -85,8 +85,12 @@ if ( isset( $pay_load ) ) {
 		$cooalliance_user_data['first_name'] = isset($user->givenName) ? $user->givenName : '';
 		$cooalliance_user_data['last_name'] = isset($user->familyName) ? $user->familyName : '';
 		$cooalliance_user_data['display_name'] = isset($user->name) ?$user->name : '';
-		$cooalliance_user_data['profile_pic'] = isset($user->picture) ? $user->picture : '';
+		$cooalliance_user_data['image'] = isset($user->picture) ? $user->picture : '';
 		$platform                 = 'google';
+		// echo "<pre>";
+		// var_dump($cooalliance_user_data['first_name']);
+		// echo "</pre>";
+		// die;
 		include 'login-data.php';
 		die;
 	}
