@@ -98,7 +98,6 @@ class EventDetails extends WP_List_Table
 
 		foreach ($userIds as $userId){
 			$user = get_user_by('id',$userId);
-			var_dump($user);
 			if(!empty($user->ID)):
 			$data[] = array(
 				'id' => $user->ID,
