@@ -3,11 +3,11 @@
  *
  * @package     Cooalliance 
  * @author      Ibrahim
- *
+ * login data
  *
  */
 
-defined('ABSPATH') or die("Cheating........Uh!!"); 
+defined('ABSPATH') or die("Cheating........Uh!!");
 
 global $wpdb;
 if ( is_user_logged_in() ) {
@@ -47,7 +47,7 @@ if ( is_email( $user_email ) ) {
 		if(isset($wt_sl_user_data['display_name']))
 			$new_user_data['display_name'] = $wt_sl_user_data['display_name'];
 		$found_customer = wp_insert_user( $new_user_data );
-		
+
 		if ( ! is_wp_error( $found_customer ) ) {
 			if(!empty($wt_sl_user_data['profile_pic']))
 				add_user_meta($found_customer, 'wt_sl_profile_pic', $wt_sl_user_data['profile_pic']);
