@@ -1,5 +1,8 @@
-$(document).ready(function() {
+(function ($) {
+  $(document).ready(function() {
 
-    $('#listUsers').DataTable();
+      $('#listUsers').DataTable();
 
-} );
+  } );
+
+})(jQuery);

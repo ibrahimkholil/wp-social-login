@@ -23,7 +23,14 @@ class Cooalliance_Member_Directory_Elementor_Widget extends Widget_Base
 	public function get_style_depends() {
 		return ['cooalliance-member-widget-css'];
 	}
-
+  /**
+   * [get_script_depends description]
+   * @return [type] [description]
+   */
+  public function get_script_depends()
+  {
+    	return ['cooalliance-member-table-js','cooalliance-member-custom-js'];
+  }
 
 	/**
 	 * Get widget name
@@ -158,7 +165,7 @@ class Cooalliance_Member_Directory_Elementor_Widget extends Widget_Base
                             <td><?php ?></td>
                             <td><?php  ?></td>
                             <td><?php  ?></td>
-                            <td>$<?php  ?></td>
+                            <td><?php  ?></td>
                         </tr>
                       <?php endforeach; else:?>
                   			<h4>Member Not Register Yet!</h4>
