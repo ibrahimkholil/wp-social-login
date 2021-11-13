@@ -135,16 +135,8 @@ $userInfo = get_userdata($currentId);
           <h3><a class="btn btn-primary" href="/add-new-resources/">Add New Resources</a></h3>
            <div class="user_resourse_table mt-3">
             <h3 class="py-3">Your Resources Lists</h3>
-              <table class="table  table-bordered ">
-                  <thead>
-                    <tr>
-                      <th scope="col">Title</th>
-                      <th scope="col">Resources type</th>
-                      <th scope="col">Date</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+              <div class="container ">
+              <div class="row">
                     <?php
 
                     global $current_user;
@@ -156,32 +148,42 @@ $userInfo = get_userdata($currentId);
                     $resource_type = get_post_meta(get_the_id(), 'resources_type', true);
                     $text_group_fileds = get_field('text_group_fileds');
                     ?>
-                      <tr>
-                        <td>
-                          <a class="text-primary" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-                        </td>
-                          <td><?php echo esc_attr(   $resource_type );?></td>
-                          <td><?php echo get_the_date( 'Y-m-d' ); ?></td>
-                          <td>
-                            <?php
-                              global $post;
-                              $postID = $post->ID; ?>
-                              <a target="_blank" href="./resource-update?post=<?php echo $postID; ?>">Edit</a>
-                           </td>
-                      </tr>
+
+                    <div class="col col-md-6 mt-4">
+                    <div class="card ">
+
+                      <h5 class="card-header">
+                        <a class="text-primary" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+                      </h5>
+                        <div class="card-body">
+
+                          <h6 class="card-subtitle mb-2 text-muted"><?php echo esc_attr(   $resource_type );?></h6>
+                          <p class="card-text">
+                          <small>Date: <?php echo get_the_date( 'Y-m-d' ); ?></small>
+                          <small>By: <?php  echo get_the_author(); ?></small>
+                           </p>
+                        </div>
+                        <div class="card-footer">
+                          <?php
+                            global $post;
+                            $postID = $post->ID; ?>
+                            <a target="_blank" class="btn btn-primary" href="./resource-update?post=<?php echo $postID; ?>">Edit</a>
+                        </div>
+                        </div>
+                      </div>
+
                     <?php
                     endwhile;
 
                     ?>
 
-                  </tbody>
-                </table>
+                  </div>
+                </div>
            </div>
         </li>
         <li id="joined_events"  style="display:none">
           <h3 class="py-3">Your Joined Events</h3>
           <?php
-
             $events = get_posts([
                'post_type' => 'events',
                'posts_per_page' => -1
@@ -189,42 +191,42 @@ $userInfo = get_userdata($currentId);
             $events = get_posts( array( 'post_type' => 'events', 'posts_per_page' => -1 ) );
 
              ?>
-             <div class="joined_events_table">
-             <table class="table  table-bordered ">
-                 <thead>
-                   <tr>
-                     <th scope="col">Title</th>
-                     <th scope="col">Date</th>
+            <div class="joined_events_table container">
+             <div class="row ">
 
-                   </tr>
-                 </thead>
-                 <tbody>
              <?php
              foreach ($events as $event){
         			$joined_user = get_post_meta($event->ID,'joinedUsers',true);
         			$eventDeadLine = get_post_meta($event->ID,'event_end_date_time',true);
               $current_user_id = get_current_user_id();
+              $image = wp_get_attachment_image_src( get_post_thumbnail_id( $event->ID ), 'evant-image' );
+            //  var_dump($event);
             ?>
 
             <?php
 
               if (in_array(  $current_user_id, $joined_user)) {
+
                 ?>
-                  <tr>
-                      <td>
-                        <a class="text-primary" href="<?php echo get_permalink($event->ID); ?>"><?php  echo $event->post_title;?></a>
-                      </td>
+                <div class="col col-md-4 mt-4">
+                    <div class="card ">
+                      <img class="card-img-top" src="  <?php echo esc_url($image[0]);?>" alt="<?php the_title_attribute(); ?>">
+                        <div class="card-body">
+                          <h5 class="card-title">
+                            <a class="text-primary" href="<?php echo get_permalink($event->ID); ?>"><?php  echo $event->post_title;?></a>
+                          </h5>
 
-                      <td>
-                      <?php  echo $eventDeadLine;?>
-                      </td>
-                  </tr>
-
+                        </div>
+                        <div class="card-footer">
+                            <?php  echo $eventDeadLine;?>
+                        </div>
+                    </div>
+                </div>
                 <?php } ?>
 
           <?php	} ?>
-        </tbody>
-       </table>
+        </div>
+      </div>
      </div>
         </li>
       </ul>

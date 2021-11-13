@@ -1,0 +1,45 @@
+.profile-nav{}
+.profile-nav .card  .card-header{
+  background: #fbc02d;
+   color: #fff;
+   border-radius: 4px 4px 0 0;
+   -webkit-border-radius: 4px 4px 0 0;
+   padding: 30px;
+   text-align: center;
+}
+.profile-nav .card  .card-header img {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 10px solid rgba(255,255,255,0.3);
+}
+
+.profile-nav .card-body .card-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.profile-nav .card-body p {
+    font-size: 12px;
+}
+
+.profile-info .card-header {
+    background: #fbc02d;
+    color: #fff;
+    text-align: center;
+    font-style: italic;
+    padding: 40px 110px;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    font-size: 16px;
+    font-weight: 300;
+}
+.profile-info  .card-body p{
+  padding: 10px 0;
+}
+
+.profile-info  .card-body p span{
+  font-weight: bold;
+}

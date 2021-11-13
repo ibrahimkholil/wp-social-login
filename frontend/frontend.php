@@ -12,7 +12,8 @@ add_action('wp_enqueue_scripts', 'cooalliance_frontend_styles' );
 
 function cooalliance_frontend_styles(){
     wp_enqueue_style('cooalliance-user-account', COOALLINACE_TOOLKIT_URL . 'frontend/assets/css/user-account.css', array());
-    wp_enqueue_style('cooalliance-user-account', COOALLINACE_TOOLKIT_URL . 'frontend/assets/css/single-event.css', array());
+    wp_enqueue_style('cooalliance-single-event', COOALLINACE_TOOLKIT_URL . 'frontend/assets/css/single-event.css', array());
+    wp_enqueue_style('cooalliance-styles', COOALLINACE_TOOLKIT_URL . 'frontend/assets/css/styles.css', array());
     wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' );
     wp_enqueue_script('cooalliance-user-tab', COOALLINACE_TOOLKIT_URL . 'frontend/assets/js/frontend.js', array('jquery'));
     wp_enqueue_script('profile-update-scripts',   COOALLINACE_TOOLKIT_URL .'frontend/assets/js/profile-update.js', ['jquery'],'', true);
@@ -71,9 +72,20 @@ function events_single_template($single_template) {
      if ($post->post_type == 'resources' ) {
        $single_template = trailingslashit( plugin_dir_path( __FILE__ ) ).'/templates/single-resources.php';
       }
+      if ( is_author() ) {
+        $single_template = trailingslashit( plugin_dir_path( __FILE__ ) ).'/templates/cooalliance-author.php';
+      }
      return $single_template;
   }
+  add_filter( 'template_include', 'cooalliance_user_template_loader' );
 
+  function cooalliance_user_template_loader( $template ) {
+      if ( is_author() ) {
+        $template = trailingslashit( plugin_dir_path( __FILE__ ) ).'/templates/cooalliance-author.php';
+
+      }
+      return $template;
+  }
   /**
    * [archive_template ]
    *

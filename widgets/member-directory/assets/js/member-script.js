@@ -3,7 +3,7 @@
 	$(document).ready(function(){
       $('#MemberSearchForm').on('submit',function(e){
         e.preventDefault();
-      
+
       var searchTerm = $('#search-term').val();
      // alert(searchTerm);
             $.ajax({
@@ -12,7 +12,7 @@
              // url: '/wp-admin/admin-ajax.php',
               // dataType: 'json',
               beforeSend: function (xhr) {
-                $('.du-loader').fadeIn(200);
+                $('.cooalliance-loader').fadeIn(200);
               },
               data: {
                 action: 'member_search_filter',
@@ -22,13 +22,13 @@
               success: function(r) {
                 console.log(r);
                 $('#search-filter-data').html(r);
-					       $('.du-loader').fadeOut(200);
+					       $('.cooalliance-loader').fadeOut(200);
               },
               error: function(r) {
                 console.error(r);
               }
             });
-        
+
     });
 	});
 
