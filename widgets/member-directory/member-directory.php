@@ -87,19 +87,19 @@ class Cooalliance_Member_Directory_Elementor_Widget extends Widget_Base
 				  ]
 			  );
 				// grid style
-				$this->add_control(
+				// $this->add_control(
 
-						 'grid_style',
-						 [
-							 'label' => __( ' Style', 'cooalliance' ),
-							 'type' => Controls_Manager::SELECT,
-							 'default' => '1',
-							 'options' => [
-								 '1' => esc_html__( 'List style', 'cooalliance' ),
-								 '2' => esc_html__( 'Grid style', 'cooalliance' ),
-							 ],
-						 ]
-					 );
+				// 		 'grid_style',
+				// 		 [
+				// 			 'label' => __( ' Style', 'cooalliance' ),
+				// 			 'type' => Controls_Manager::SELECT,
+				// 			 'default' => '1',
+				// 			 'options' => [
+				// 				 '1' => esc_html__( 'List style', 'cooalliance' ),
+				// 				 '2' => esc_html__( 'Grid style', 'cooalliance' ),
+				// 			 ],
+				// 		 ]
+				// 	 );
 					 //show column
 	 $this->add_responsive_control(
 		 'columns',
