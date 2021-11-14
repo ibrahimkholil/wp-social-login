@@ -29,7 +29,7 @@ get_header( );
                $eventData = new WP_Query(
                  [
                    'post_type'        => 'events',
-                   'posts_per_page'   => 2,
+                   'posts_per_page'   => 10,
                    'paged'=>$paged,
                    'orderby'          => 'post_date',
                    'order'            => 'DESC',
@@ -78,6 +78,8 @@ get_header( );
                    </div>
                  </div>
                <?php endwhile;  ?>
+               <?php wp_reset_query(); ?>
+               <?php endif; ?>
                <div class="col-8 mx-auto">
                        <div class="pagination">
                            <?php
@@ -101,7 +103,7 @@ get_header( );
                            ?>
                        </div>
                    </div>
-               <?php wp_reset_query(); endif; ?>
+               
              </div>
            </div>
          </div>

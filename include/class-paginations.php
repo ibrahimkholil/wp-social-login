@@ -1,5 +1,5 @@
 <?php
-function cooalliance_pagination_nav() {
+function cooalliance_pagination_nav_old() {
 
 if (is_singular())
             return;
@@ -65,4 +65,40 @@ if (is_singular())
             printf('<li class="page-item next-page">%s</li>' . "\n", get_next_posts_link('Next'));
 
         echo '</ul></div>' . "\n";
+}
+function cooalliance_pagination_nav($pages = '', $range = 1)
+{ 
+     $showitems = ($range * 2)+1;  
+ 
+     global $paged;
+     if(empty($paged)) $paged = 1;
+ 
+     if($pages == '')
+     {
+         global $wp_query;
+         $pages = $wp_query->max_num_pages;
+         if(!$pages)
+         {
+             $pages = 1;
+         }
+     }   
+ 
+     if(1 != $pages)
+     {
+         echo "<div class=\"pagination\">";
+         if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<a href='".get_pagenum_link(1)."'>&laquo; First</a>";
+         if($paged > 1 && $showitems < $pages) echo "<a href='".get_pagenum_link($paged - 1)."'>&lsaquo; Previous</a>";
+ 
+         for ($i=1; $i <= $pages; $i++)
+         {
+             if (1 != $pages &&( !($i >= $paged+$range+4 || $i <= $paged-$range-1) || $pages <= $showitems ))
+             {
+                 echo ($paged == $i)? "<span class=\"current\">".$i."</span>":"<a href='".get_pagenum_link($i)."' class=\"inactive\">".$i."</a>";
+             }
+         }
+ 
+         if ($paged < $pages && $showitems < $pages) echo "<a href=\"".get_pagenum_link($paged + 1)."\" class=\"next-page\">Next &rsaquo;</a>";  
+         if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<a href='".get_pagenum_link($pages)."' class=\"last-page\">Last &raquo;</a>";
+         echo "</div>\n";
+     }
 }

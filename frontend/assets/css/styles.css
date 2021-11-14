@@ -48,8 +48,16 @@
 /* ******************************
 pagination css
 *********/
-
-.pagination .page-numbers {
+.pagination{
+  border-top: none!important;
+  margin-top: 0!important;
+}
+#pagination .page-numbers {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+}
+.pagination .page-numbers,#pagination .page-numbers  li .page-numbers{
   position: relative;
   display: block;
   padding: 0.5rem 0.75rem;
@@ -69,9 +77,39 @@ pagination css
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
-.pagination .page-numbers.current {
+.pagination .page-numbers.current ,#pagination .page-numbers  li .page-numbers.current{
   z-index: 1;
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
+}
+
+
+/* *********************
+member directory css 
+*************************/
+form#MemberSearchForm {
+  margin-bottom: 20px;
+}
+#MemberSearchForm .input-group{
+  display: flex;
+    flex: auto;
+    flex-wrap: nowrap;
+    max-width: 100%;
+}
+#MemberSearchForm .input-group .form-outline{
+  flex-grow: 1;
+  min-width: 3em;
+
+}
+#MemberSearchForm .input-group .form-outline  input{
+  color: #28303d;
+  line-height: 1.7;
+  max-width: inherit;
+  margin-right: calc(-1 * 3px);
+  padding: calc(0.5 * 20px);
+}
+#MemberSearchForm .input-group .search-btn{
+  line-height: 1;
+  padding: 0.375rem 0.75rem;
 }

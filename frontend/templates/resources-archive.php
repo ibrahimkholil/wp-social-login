@@ -14,12 +14,23 @@ get_header( );
   </div>
   <div class="row resources_archive_list_table">
       <?php
+       $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+       $resources_arg = new WP_Query(
+        [
+          'post_type'        => 'resources',
+          'posts_per_page'   => 10,
+          'paged'=>$paged,
+          'orderby'          => 'post_date',
+          'order'            => 'DESC',
+          'post_status'      => 'publish'
+        ]
+      );
         if ( have_posts() ) :
             ?>
             <?php
             /* Start the Loop */
-            while ( have_posts() ) :
-                the_post();
+            while (  $resources_arg->have_posts() ) :
+              $resources_arg->the_post();
                   $resource_type = get_post_meta(get_the_id(), 'resources_type', true);
                 ?>
                 <div class="col col-md-4 mt-4">
@@ -48,6 +59,29 @@ get_header( );
 
         endif;
         ?>
+          <div class="col-8 mx-auto">
+                       <div class="pagination">
+                           <?php
+                         // echo cooalliance_pagination_nav();
+
+                         $total_pages = $resources_arg->max_num_pages;
+
+                        if ($total_pages > 1){
+
+                            $current_page = max(1, get_query_var('paged'));
+
+                            echo paginate_links(array(
+                                'base' => get_pagenum_link(1) . '%_%',
+                                'format' => '/page/%#%',
+                                'current' => $current_page,
+                                'total' => $total_pages,
+                                'prev_text'    => __('« Previous'),
+                                'next_text'    => __('Next »'),
+                            ));
+                        }  
+                           ?>
+                       </div>
+                   </div>
   </div>
 </div>
 

@@ -141,8 +141,9 @@ $userInfo = get_userdata($currentId);
 
                     global $current_user;
                     wp_get_current_user();
+                    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-                    $author_query = array('post_type' => 'resources','posts_per_page' => '-1','author' => $current_user->ID);
+                    $author_query = array('post_type' => 'resources','posts_per_page' => '10', 'paged'=>$paged,'author' => $current_user->ID);
                     $author_posts = new WP_Query($author_query);
                     while($author_posts->have_posts()) : $author_posts->the_post();
                     $resource_type = get_post_meta(get_the_id(), 'resources_type', true);
@@ -176,7 +177,29 @@ $userInfo = get_userdata($currentId);
                     endwhile;
 
                     ?>
+                    <div class="col-8 mx-auto">
+                       <div class="pagination">
+                           <?php
+                         // echo cooalliance_pagination_nav();
 
+                         $total_pages = $author_posts->max_num_pages;
+
+                        if ($total_pages > 1){
+
+                            $current_page = max(1, get_query_var('paged'));
+
+                            echo paginate_links(array(
+                                'base' => get_pagenum_link(1) . '%_%',
+                                'format' => '/page/%#%',
+                                'current' => $current_page,
+                                'total' => $total_pages,
+                                'prev_text'    => __('« Previous'),
+                                'next_text'    => __('Next »'),
+                            ));
+                        }  
+                           ?>
+                       </div>
+                   </div>
                   </div>
                 </div>
            </div>
