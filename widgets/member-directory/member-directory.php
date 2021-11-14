@@ -286,18 +286,19 @@ private function member_layout_style_controls()
 							?>
 							<div class="card cooalliance_member_list_card">
 								<a href="<?php echo get_author_posts_url( $member_info->ID, $nick_name ); ?>"	>
-									<?php echo $nick_name; ?>
-								</a>
 									<?php if(!empty($user_image)): ?>
-
-
-								  <img class="card-img-top" src="<?php echo $user_image; ?>" alt="Card image cap">
-							  	<?php else: ?>
+									<img class="card-img-top" src="<?php echo $user_image; ?>" alt="Card image cap">
+									<?php else: ?>
+								</a>
+									
 							    <?php echo get_avatar( $member_info->ID, 'medium', '', 'member-profile', array('class' => array('img-fluid', 'rounded-circle') )); ?>
 							  	<?php endif; ?>
 								  <div class="card-body">
 										<?php if(!empty($nick_name)): ?>
-											 <h5 class="card-title"><?php echo $nick_name; ?></h5>
+											<a href="<?php echo get_author_posts_url( $member_info->ID, $nick_name ); ?>"	>
+												 <h5 class="card-title"><?php echo $nick_name; ?>
+												</h5>
+										</a>
 										<?php endif; ?>
 										<?php if(!empty($company)): ?>
 											 <p class="card-text">Company: <?php echo $company; ?></hp>

@@ -19,25 +19,18 @@ get_header( );
                $currentId = get_current_user_id();
                 $userInfo = get_userdata($currentId);
 
-               $joinUrl = array();
-               //if(is_single()):
-               $args = array(
-                 'numberposts' => -1,
-                 'post_type'   => 'events'
-               );
-
-               $events = get_posts( $args );
-               foreach ($events as $event){
-                 $joinUrl[] = $event->guid;
-               }
 
                ?>
 
                <?php
+               //global $query_string;
+               $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+              
                $eventData = new WP_Query(
                  [
                    'post_type'        => 'events',
-                   'posts_per_page'   => -1,
+                   'posts_per_page'   => 2,
+                   'paged'=>$paged,
                    'orderby'          => 'post_date',
                    'order'            => 'DESC',
                    'post_status'      => 'publish'
@@ -84,18 +77,35 @@ get_header( );
                      <?php endif; ?>
                    </div>
                  </div>
-               <?php endwhile;  wp_reset_query(); endif; ?>
-             </div>
-           </div>
-         </div>
-                   <div class="col-8 mx-auto">
+               <?php endwhile;  ?>
+               <div class="col-8 mx-auto">
                        <div class="pagination">
                            <?php
-                             //global $opt;
-                            // var_dump($opt->pagination->customPagination());
+                         // echo cooalliance_pagination_nav();
+
+                         $total_pages = $eventData->max_num_pages;
+
+                        if ($total_pages > 1){
+
+                            $current_page = max(1, get_query_var('paged'));
+
+                            echo paginate_links(array(
+                                'base' => get_pagenum_link(1) . '%_%',
+                                'format' => '/page/%#%',
+                                'current' => $current_page,
+                                'total' => $total_pages,
+                                'prev_text'    => __('« Previous'),
+                                'next_text'    => __('Next »'),
+                            ));
+                        }  
                            ?>
                        </div>
                    </div>
+               <?php wp_reset_query(); endif; ?>
+             </div>
+           </div>
+         </div>
+                   
        </div>
    </section>
  </main>
