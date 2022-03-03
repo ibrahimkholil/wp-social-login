@@ -9,15 +9,7 @@
 
 defined('ABSPATH') or die("Cheating........Uh!!"); 
 
-//
-// cooalliance_switcher_field(
-//     array(
 
-//         'label' => esc_html__( 'Popup Switcher', 'cooalliance' ),
-//         'inline' => false,
-//         'name'  => 'popupswitcher',
-//     )
-// );
 
 // Google Client id field
 cooalliance_text_field(

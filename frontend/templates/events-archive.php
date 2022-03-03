@@ -25,7 +25,7 @@ get_header( );
                <?php
                //global $query_string;
                $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-              
+               $today = date( 'Y-m-d' );
                $eventData = new WP_Query(
                  [
                    'post_type'        => 'events',
@@ -33,7 +33,15 @@ get_header( );
                    'paged'=>$paged,
                    'orderby'          => 'post_date',
                    'order'            => 'DESC',
-                   'post_status'      => 'publish'
+                   'post_status'      => 'publish',
+                   'meta_query' => array(
+                      array(
+                          'key'     => 'event_end_date_time', 
+                          'value'   => date('Y-m-d'), 
+                          'compare' => '>=',
+                          'type' => 'date'
+                      )
+                  )
                  ]
                );
                ?>
@@ -54,7 +62,7 @@ get_header( );
                        </div>
                        <div class="col-12 col-md-3">
                          <div class="text-right">
-                           <a href="<?php the_permalink(); ?>" class="btn btn-primary px-5 py-2 read-more-btn">See Event Details</a>
+                           <a href="<?php the_permalink(); ?>" class="btn btn-primary px-5 py-2 read-more-btn"><?php _e('See Event Details', 'cooalliance'); ?></a>
                          </div>
                        </div>
                      <?php else: ?>
@@ -68,7 +76,7 @@ get_header( );
                            </div>
                            <div class="col-4">
                              <div class="btn-join text-right">
-                               <a href="<?php the_permalink(); ?>" class="btn btn-primary px-5 py-2 read-more-btn">See Event Details</a>
+                               <a href="<?php the_permalink(); ?>" class="btn btn-primary px-5 py-2 read-more-btn"><?php _e('See Event Details', 'cooalliance'); ?></a>
                              </div>
                            </div>
                          </div>
@@ -80,7 +88,7 @@ get_header( );
                <?php endwhile;  ?>
                <?php wp_reset_query(); ?>
                <?php endif; ?>
-               <div class="col-8 mx-auto">
+               <div class="col-8 mx-auto coo-pagination-wrapper events-pagination">
                        <div class="pagination">
                            <?php
                          // echo cooalliance_pagination_nav();
@@ -93,7 +101,7 @@ get_header( );
 
                             echo paginate_links(array(
                                 'base' => get_pagenum_link(1) . '%_%',
-                                'format' => '/page/%#%',
+                                'format' => 'page/%#%',
                                 'current' => $current_page,
                                 'total' => $total_pages,
                                 'prev_text'    => __('« Previous'),

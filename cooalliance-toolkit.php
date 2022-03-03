@@ -44,12 +44,16 @@ if (class_exists('Cooallinace_Toolkit'))
 
     $Cooallinace = new Cooallinace_Toolkit();
 }
-
+/*
+ * Member custom role when plugin in active
+ */
+function cooalliance_member_role() {
+    add_role( 'member', 'Member', array( 'read' => true, 'level_0' => true ) );
+}
+register_activation_hook( __FILE__, 'cooalliance_member_role' );
 // Admin file include
 require_once( COOALLINACE_TOOLKIT_DIR_ADMIN. 'admin.php' );
 // frontend file include
 require_once( COOALLINACE_TOOLKIT_PATH. 'frontend/frontend.php' );
 require_once( COOALLINACE_TOOLKIT_PATH. 'include/force-login.php' );
-require_once( COOALLINACE_TOOLKIT_PATH. 'include/class-paginations.php' );
 require_once( COOALLINACE_TOOLKIT_PATH. 'widgets/widgets.php' );
-

@@ -39,7 +39,7 @@ if ( is_email( $user_email ) ) {
 		$new_user_data['user_login'] = $username;
 		$new_user_data['user_pass'] = $password;
 		$new_user_data['user_email'] = $user_email;
-		$new_user_data['role'] = 'subscriber';
+		$new_user_data['role'] = 'member';
 		if(isset($cooalliance_user_data['first_name']))
 			$new_user_data['first_name'] = $cooalliance_user_data['first_name'];
 		if(isset($cooalliance_user_data['last_name']))

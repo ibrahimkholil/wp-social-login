@@ -29,6 +29,7 @@ function cooalliance_frontend_styles(){
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 				'nonce'    => wp_create_nonce('event-join-meta-nonce')
 			));
+    wp_enqueue_media();
 }
 /**
  * [page template create]
@@ -115,23 +116,26 @@ function custom_archive_template($archive_template){
 	if(!empty($_POST['eventPostId']) ){
 		$joinedUsers = get_post_meta($_POST['eventPostId'],'joinedUsers',true);
 
-		if(is_array($joinedUsers)){
+        if(is_array($joinedUsers)){
 
-			if(in_array($userId,$joinedUsers)){
-				echo json_encode(array('Status' => true, 'message' => 'You have already joined in the event'));
-				wp_die();
-			}else{
-				array_push($joinedUsers,$userId);
-				update_post_meta( $_POST['eventPostId'],  'joinedUsers', $joinedUsers);
-				echo json_encode(array('Status' => true, 'message' => 'Thank you for Join This Event.'));
-				wp_die();
-			}
-		}else{
-			$joinedUsers = array($userId);
-			update_post_meta( $_POST['eventPostId'],  'joinedUsers', $joinedUsers);
-			echo json_encode(array('Status' => true, 'message' => 'Thank you for Join This Event.'));
-			wp_die();
-		}
+            if(in_array($userId,$joinedUsers)){
+                $message = __('You have already joined in the event', 'cooalliance');
+                echo json_encode(array('Status' => true, 'message' => $message));
+                wp_die();
+            }else{
+                array_push($joinedUsers,$userId);
+                update_post_meta( $_POST['eventPostId'],  'joinedUsers', $joinedUsers);
+                $message = __('Thank you for Join This Event.', 'cooalliance');
+                echo json_encode(array('Status' => true, 'message' => $message));
+                wp_die();
+            }
+        }else{
+            $joinedUsers = array($userId);
+            update_post_meta( $_POST['eventPostId'],  'joinedUsers', $joinedUsers);
+            $message = __('Thank you for Join This Event.', 'cooalliance');
+            echo json_encode(array('Status' => true, 'message' =>   $message));
+            wp_die();
+        }
 
 
 

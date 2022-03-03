@@ -39,6 +39,10 @@
 	public function init_widget()
 	{
     	require_once(__DIR__ . '/member-directory/member-directory.php');
+		require_once(__DIR__ . '/event-list/event-list.php');
+    	require_once(__DIR__ . '/resource-list/resource-list.php');
+    	require_once(__DIR__ . '/account/account.php');
+    	require_once(__DIR__ . '/add-resource/add-resource.php');
 
 	}
 	/**

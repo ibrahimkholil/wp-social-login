@@ -9,32 +9,34 @@ $user_country = get_user_meta( $current_author->ID, 'country', true);
 $user_birthday = get_user_meta( $current_author->ID, 'birthdate', true);
 $user_industry = get_user_meta( $current_author->ID, 'industry', true);
 $user_phone = get_user_meta( $current_author->ID, 'cell_number', true);
+$linkedin = get_user_meta( $current_author->ID, 'linkedin', true);
+$facebook = get_user_meta( $current_author->ID, 'facebook', true);
 
 ?>
 <?php
  // var_dump($current_author);
 ?>
-<div class="container">
+<div class="container coo-author-wrapper">
   <div class="">
     <h1 class="pb-3">
-      <?php echo apply_filters('author_page_heading', 'Author Info'); ?>
+      <?php echo apply_filters('author_page_heading', _e('Author Info', 'cooalliance')); ?>
     </h1>
   </div>
 <div class="row">
-  <div class="profile-nav col-md-3">
+  <div class="col-md-3">
     <div class="card">
           <div class="card-header">
             <?php if (!empty($user_image)): ?>
               <img  class="card-img-top rounded-circle" src="<?php echo $user_image;?>" alt="">
               <?php else:?>
-                <img  class="card-img-top rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                <img  class="card-img-top rounded-circle" src="<?php echo get_avatar_url( $current_author->ID, 'medium', '', 'member-profile', array('class' => array('img-fluid', 'm-auto rounded-circle') )); ?>" alt="">
 
             <?php endif; ?>
           </div>
 
         <div class="card-body">
           <div class="profile-left-info text-center">
-            <h3 class="card-title"> <?php echo $current_author->nickname; ?></h3>
+            <h3 class="card-title"> <?php echo $current_author->first_name .'<span style="padding: 5px"></span>'. $current_author->last_name; ?></h3>
             <p class="card-text">
             <?php echo $user_job_company;?>
             </p>
@@ -42,60 +44,69 @@ $user_phone = get_user_meta( $current_author->ID, 'cell_number', true);
 
 
           <ul class="list-group list-group-flush">
-           <li class="list-group-item">Profile</li>
-           <li class="list-group-item">Recent Activity</li>
-
+          
          </ul>
         </div>
     </div>
 
   </div>
-  <div class="profile-info col-md-9">
+  <div class=" col-md-9">
 
 
       <div class="card">
           <div class="card-header">
-              <h3>User Info</h3>
+              <h3>
+                  <?php esc_html('User Info','cooalliance');?>
+              </h3>
           </div>
           <div class="card-body bio-graph-info ">
-
               <div class="row">
                   <div class="col col-md-6 col-sm-12">
                       <p class="text-secondary">
-                        <span>First Name </span>: <?php echo $current_author->first_name; ?>
+                        <span><?php esc_html_e('First Name','cooalliance')?> </span>: <?php echo $current_author->first_name; ?>
                       </p>
                   </div>
                   <div class="col col-md-6 col-sm-12">
                       <p class="text-secondary">
-                        <span>Last Name </span>: <?php echo $current_author->last_name;?>
+                        <span><?php esc_html_e('Last Name','cooalliance')?> </span>: <?php echo $current_author->last_name;?>
                       </p>
                   </div>
                   <div class="col col-md-6 col-sm-12">
                       <p class="text-secondary">
-                        <span>Country </span>: <?php echo $user_country; ?>
+                        <span><?php esc_html_e('Country','cooalliance')?> </span>: <?php echo $user_country; ?>
                       </p>
                   </div>
                   <div class="col col-md-6 col-sm-12">
                       <p class="text-secondary">
-                        <span>Birthday</span>: <?php echo $user_birthday;?>
+                        <span><?php esc_html_e('Birthday','cooalliance')?></span>: <?php echo $user_birthday;?>
                       </p>
                   </div>
                   <div class="col col-md-6 col-sm-12">
                         <p class="text-secondary">
-                        <span>Occupation </span>: <?php echo $user_job_title;?>
+                        <span><?php esc_html_e('Occupation','cooalliance')?> </span>: <?php echo $user_job_title;?>
                       </p>
                   </div>
                   <div class="col col-md-6 col-sm-12">
                         <p class="text-secondary">
-                        <span>Industry </span>: <?php echo $user_industry;?>
+                        <span><?php esc_html_e('Industry','cooalliance')?> </span>: <?php echo $user_industry;?>
                       </p>
                   </div>
                   <div class="col col-md-6 col-sm-12">
                       <p class="text-secondary">
-                        <span>Mobile </span>: <?php echo $user_phone;?>
+                        <span><?php esc_html_e('Mobile','cooalliance')?> </span>: <?php echo $user_phone;?>
                       </p>
                   </div>
-
+              </div>
+              <br>
+              <div class="row">
+                  <div class="col col-md-6 col-sm-12">
+                      <?php if(!empty($facebook)): ?>
+                          <a target="_blank" href="<?php echo $facebook ?>" class="btn btn-primary"><?php esc_html_e('Facebook','cooalliance')?></a>
+                      <?php endif; ?>
+                      <?php if(!empty($linkedin)): ?>
+                          <a target="_blank" href="<?php echo $linkedin ?>" class="btn btn-primary"><?php esc_html_e('LinkedIn','cooalliance')?></a>
+                      <?php endif; ?>
+                  </div>
               </div>
           </div>
       </div>
